@@ -5,11 +5,11 @@
 #include "SPIFFS.h"
 #include <Arduino_JSON.h>
 
-// Thay thế bằng thông tin wifi của bạn
+// Thay thế bằng thông tin wifi
 const char* ssid = "MIND";
 const char* password = "mindprojects";
 
-// Tạo đối tượng AsyncWebServer trên cổng 80
+// Mở cổng 80 trên server
 AsyncWebServer server(80);
 // Tạo một đối tượng WebSocket
 
@@ -76,7 +76,7 @@ void notifyClients(String sliderValues) {
   ws.textAll(sliderValues);
 }
 
-//xử lý những gì xảy ra khi máy chủ nhận được thông báo từ máy khách //thông qua giao thức WebSocket. 
+//xử lý những gì xảy ra khi máy chủ nhận được thông báo từ máy khách thông qua giao thức WebSocket. 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
   AwsFrameInfo *info = (AwsFrameInfo*)arg;
   if (info->final && info->index == 0 && info->len == len && info->opcode == WS_TEXT) {
